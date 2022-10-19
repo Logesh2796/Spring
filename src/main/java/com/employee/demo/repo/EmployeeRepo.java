@@ -1,0 +1,20 @@
+package com.employee.demo.repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.employee.demo.entity.EmployeeEntity;
+
+public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Integer>{
+
+
+
+	@Query(value="select * from employee where salary>? and salary<?", nativeQuery=true)
+	public List<EmployeeEntity>get(int salary1,int salary2);
+	
+	@Query(value= "delete from employee where id=? and id=?", nativeQuery=true)
+	public String delete(int id1,  int id2);
+}
+
